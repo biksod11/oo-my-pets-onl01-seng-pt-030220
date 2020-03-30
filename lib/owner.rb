@@ -33,13 +33,22 @@ class Owner
   def feed_cats
     self.cats.each {|cat| cat.mood = "happy"}
   end
-  
+
   def cats
     Cat.all.select {|cat| cat.owner == self}
   end
 
   def dogs
     Dog.all.select {|dog| dog.owner == self}
+  end
+
+  def sell_pets
+    pets = self.dogs + self.cats
+
+    pets.each do |pet|
+      pet.mood = "nervous"
+      pet.owner = nil
+    end
   end
 
   def name
