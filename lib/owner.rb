@@ -14,6 +14,16 @@ class Owner
     @@all << self
   end
 
+  def buy_cat(name)
+    new_cat = Cat.new(name, owner = self)
+    @name = name
+    @owner = owner
+  end
+
+  def cats
+    Cats.all.collect {|cat| cat.owner == self}
+  end
+
   def name
     @name
   end
